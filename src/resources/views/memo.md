@@ -1,0 +1,1 @@
+- [laravel tutorial](https://readouble.com/laravel/8.x/ja/views.html)
