@@ -5,7 +5,8 @@
         theme: {
             fontFamily: {
                 'fonda': 'Fondamento',
-                'cor': 'Cormorant SC'
+                'cor': 'Cormorant SC',
+                'noto': 'Noto Serif JP',
             },
             extend: {
                 colors: {
@@ -35,7 +36,7 @@
     /*Header*/
     @layer components {
         header {
-            @apply p-8;
+            @apply py-8 px-32;
         }
         .title {
             @apply text-7xl pb-8;
@@ -52,6 +53,53 @@
         .boundary {
             @apply my-4 h-16;
             @apply border-monokaiBlack;
+        }
+    }
+    /*Article Table*/
+    @layer components {
+        .table_article {
+            @apply list-none;
+        }
+        .card_article {
+            @apply w-full;
+            @apply px-32 py-8;
+            @apply my-4;
+            @apply content-center;
+            @apply border-monokaiBlack;
+            @apply rounded-lg;
+        }
+        .card_article__anchor {
+            @apply block;
+            @apply grid grid-cols-5;
+        }
+        .card_article__image {
+            @apply col-span-1;
+            @apply rounded-lg;
+            @apply grayscale;
+        }
+        .card_article__description {
+            @apply col-span-4;
+            @apply px-32 py-2;
+        }
+        .card_article__author {
+            @apply text-sm;
+            @apply py-1;
+            @apply font-noto;
+        }
+        .card_article__title {
+            @apply text-3xl;
+            @apply py-4;
+            @apply font-noto;
+        }
+        .card_article__created_at {
+            @apply text-sm;
+            @apply py-1;
+            @apply font-fonda;
+        }
+        .card_article__body {
+            @apply text-sm;
+            @apply py-1;
+            @apply font-noto;
         }
     }
 </style>

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\showArticleController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -15,5 +16,5 @@ use Illuminate\Support\Facades\Route;
 
 // router is here: define routes => HTTP/Controllers/Controller.php
 Route::get('/', function () {
-    return view('welcome');
+    return showArticleController::index();
 });
