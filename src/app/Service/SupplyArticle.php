@@ -1,19 +1,17 @@
 <?php
 
-declare(strict_types=1);
+namespace App\Service;
 
-namespace App\Http\Controllers;
 use App\Models\Article;
-use Illuminate\Contracts\Foundation\Application;
-use Illuminate\Contracts\View\Factory;
-use Illuminate\Contracts\View\View;
 
-class DummyArticle extends Controller
+class SupplyArticle
 {
+    // TODO: articleData関数をRepository層を作ったら実装する
+
     /**
      * @return Article[]
      */
-    private static function supplyDummyArticle(): array
+    public static function dummyArticleData(): array
     {
         return [
             new Article (
@@ -41,18 +39,5 @@ class DummyArticle extends Controller
                 image_path: 'image/test_image_rose.jpg'
             )
         ];
-    }
-
-    /**
-     * @return Application|Factory|View
-     */
-    public static function index(): Application|Factory|View
-    {
-        return view(
-            view: 'homepage'
-            , data: [
-                'articles' => self::supplyDummyArticle()
-            ]
-        );
     }
 }
