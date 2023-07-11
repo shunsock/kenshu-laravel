@@ -22,7 +22,7 @@ class DummyArticle extends Controller
                 author: '風船太郎',
                 createdAt: '2021-01-01',
                 updatedAt: '2021-01-01',
-                image_path: 'test_image_balloon.jpg'
+                image_path: 'image/test_image_balloon.jpg'
             ),
             new Article(
                 title: '車',
@@ -30,7 +30,7 @@ class DummyArticle extends Controller
                 author: '車太郎',
                 createdAt: '2021-01-01',
                 updatedAt: '2021-01-01',
-                image_path: 'test_image_car.jpg'
+                image_path: 'image/test_image_car.jpg'
             ),
             new Article(
                 title: 'バラ',
@@ -38,7 +38,7 @@ class DummyArticle extends Controller
                 author: 'バラ太郎',
                 createdAt: '2021-01-01',
                 updatedAt: '2021-01-01',
-                image_path: 'test_image_rose.jpg'
+                image_path: 'image/test_image_rose.jpg'
             )
         ];
     }
@@ -48,6 +48,11 @@ class DummyArticle extends Controller
      */
     public static function index(): Application|Factory|View
     {
-        return view(view: 'homepage', data: self::supplyDummyArticle());
+        return view(
+            view: 'homepage'
+            , data: [
+                'articles' => self::supplyDummyArticle()
+            ]
+        );
     }
 }
