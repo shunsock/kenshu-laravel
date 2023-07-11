@@ -45,30 +45,30 @@ ALTER TABLE `tag` ADD FOREIGN KEY (`post_id`) REFERENCES `post` (`id`);
 
 ALTER TABLE `tag` ADD FOREIGN KEY (`tag_id`) REFERENCES `tag_name` (`id`);
 
-
-INSERT INTO "users" (name, email, user_image_path, password)
+INSERT INTO `users` (`name`, `email`, `user_image_path`, `password`)
 VALUES
     (
-        'admin'
-        , 'test-email@gmail.com'
-        , 'https://avatars.githubusercontent.com/u/84004458?v=4'
-        , 'pass'
+        'admin',
+        'test-email@gmail.com',
+        'https://avatars.githubusercontent.com/u/84004458?v=4',
+        'pass'
     );
-INSERT INTO "post" (title, user_id, thumbnail, body)
+
+INSERT INTO `post` (`title`, `user_id`, `thumbnail`, `body`)
 VALUES
     (
         'Balloon',
         1,
         'image/test_image_balloon.jpg',
         'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.'
-    )
-    ,(
+    ),
+    (
         'car',
-        1,
+            1,
         'image/test_image_car.jpg',
         'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.'
-    )
-    ,(
+    ),
+    (
         'Rose is a flower',
         1,
         'image/test_image_rose.jpg',
