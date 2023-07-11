@@ -4,6 +4,6 @@
     <title> NEWSORT TIMES</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+SC:wght@400;700&family=Fondamento&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@50&family=Cormorant+SC:wght@400;700&family=Fondamento&display=swap" rel="stylesheet">
     @include('components.tailwind')
 </head>
