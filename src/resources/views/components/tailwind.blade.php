@@ -36,7 +36,7 @@
     /*Header*/
     @layer components {
         header {
-            @apply py-8 px-32;
+            @apply pt-8 px-32;
         }
         .title {
             @apply text-7xl pb-8;
@@ -53,6 +53,34 @@
         .boundary {
             @apply my-4 h-16;
             @apply border-monokaiBlack;
+        }
+    }
+    /*Message*/
+    @layer components {
+        .message_box {
+            @apply w-1/2;
+            @apply flex;
+            @apply mx-32;
+            @apply my-12;
+            @apply content-center;
+            @apply items-center;
+        }
+        .message {
+            @apply text-3xl;
+            @apply py-4 px-16;
+            @apply rounded-lg;
+            @apply text-monokaiWhite;
+            @apply bg-monokaiBlack;
+            @apply font-noto;
+        }
+        .attention {
+            @apply w-16;
+            @apply h-16;
+            @apply mr-8;
+            @apply p-2;
+            @apply rounded-full;
+            @apply border-monokaiBlack;
+            @apply border-4;
         }
     }
     /*Article Table*/
