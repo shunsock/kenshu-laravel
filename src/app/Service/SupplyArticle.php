@@ -3,10 +3,29 @@
 namespace App\Service;
 
 use App\Models\Article;
+use App\Repository\ShowArticleRepository;
 
 class SupplyArticle
 {
     // TODO: articleData関数をRepository層を作ったら実装する
+    public static function articleData(): array
+    {
+        $articles =  ShowArticleRepository::getData();
+        $articleData = [];
+        $count = 0;
+        foreach ($articles as $article) {
+            $articleData[$count] = new Article(
+                title: $article['title']
+                , body: substr(string: $article['body'], offset: 0, length: 100)."..."
+                , author: "admin"
+                , createdAt: $article['created_at']
+                , updatedAt: $article['updated_at']
+                , image_path: $article['thumbnail']
+            );
+            $count++;
+        }
+        return $articleData;
+    }
 
     /**
      * @return Article[]

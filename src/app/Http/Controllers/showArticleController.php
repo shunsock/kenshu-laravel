@@ -18,7 +18,7 @@ class showArticleController extends Controller
         return view(
             view: 'homepage'
             , data: [
-                'articles' => SupplyArticle::dummyArticleData()
+                'articles' => SupplyArticle::articleData()
             ]
         );
     }

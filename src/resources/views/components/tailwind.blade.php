@@ -62,7 +62,7 @@
         }
         .card_article {
             @apply w-full;
-            @apply px-32 py-8;
+            @apply px-32 py-4;
             @apply my-4;
             @apply content-center;
             @apply border-monokaiBlack;
