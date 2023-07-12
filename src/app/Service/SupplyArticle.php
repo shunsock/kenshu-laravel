@@ -7,7 +7,6 @@ use App\Repository\ShowArticleRepository;
 
 class SupplyArticle
 {
-    // TODO: articleData関数をRepository層を作ったら実装する
     public static function articleData(): array
     {
         $articles =  ShowArticleRepository::getData();
