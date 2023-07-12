@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\showArticleController;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Http\Request;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,6 +16,9 @@ use Illuminate\Support\Facades\Route;
 */
 
 // router is here: define routes => HTTP/Controllers/Controller.php
-Route::get('/', function () {
-    return showArticleController::index();
-});
+Route::get(
+    uri: '/',
+    action: function (Request $req) {
+        return showArticleController::index(req : $req);
+    }
+);

@@ -4,10 +4,8 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers;
 use App\Service\SupplyArticle;
-use App\Service\Message;
 use Dotenv\Exception\InvalidFileException;
-use Illuminate\Contracts\Foundation\Application;
-use Illuminate\Contracts\View\Factory;
+use Illuminate\Http\Request;
 use Illuminate\Contracts\View\View;
 use Nette\InvalidArgumentException;
 use PDOException;
@@ -15,13 +13,20 @@ use PDOException;
 class showArticleController extends Controller
 {
     /**
-     * @return Application|Factory|View
+     * @param Request $req
+     * @return View
      */
-    public static function index(): Application|Factory|View
+    public static function index(Request $req): View
     {
         try {
             $articles = SupplyArticle::articleData();
-            $message = Message::extract();
+
+            // if message does not exist return ''
+            $message = $req->query(
+                key: 'message',
+                default: ''
+            );
+
         } catch (InvalidFileException) {
             return view(
                 view: 'homepage'
