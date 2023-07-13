@@ -3,9 +3,10 @@
 declare(strict_types=1);
 
 namespace App\Http\Controllers;
+use App\Service\SearchErrorMessage;
 use App\Service\SupplyArticle;
+use App\Models\HomePageDTO;
 use Dotenv\Exception\InvalidFileException;
-use Illuminate\Http\Request;
 use Illuminate\Contracts\View\View;
 use Nette\InvalidArgumentException;
 use PDOException;
@@ -13,39 +14,35 @@ use PDOException;
 class showArticleController extends Controller
 {
     /**
-     * @param Request $req
+     * @param HomePageDTO $dto
      * @return View
      */
-    public static function index(Request $req): View
+    public static function index(HomePageDTO $dto): View
     {
         try {
             $articles = SupplyArticle::articleData();
-
-            // if message does not exist return ''
-            $message = $req->query(
-                key: 'message',
-                default: ''
-            );
-
         } catch (InvalidFileException) {
+            $errorMessage = SearchErrorMessage::errorMessages['InvalidFileException'];
             return view(
                 view: 'homepage'
                 , data: [
-                    'message' => 'Internal Server Error: InvalidFileException'
+                    'message' => $errorMessage
                 ]
             );
         } catch (InvalidArgumentException) {
+            $errorMessage = SearchErrorMessage::errorMessages['InvalidArgumentException'];
             return view(
                 view: 'homepage'
                 , data: [
-                    'message' => 'Internal Server Error: InvalidArgumentException'
+                    'message' => $errorMessage
                 ]
             );
         } catch (PDOException){
+            $errorMessage = SearchErrorMessage::errorMessages['PDOException'];
             return view(
                 view: 'homepage'
                 , data: [
-                    'message' => 'Internal Server Error: PDOException'
+                    'message' => $errorMessage
                 ]
             )  ;
         }
@@ -53,7 +50,7 @@ class showArticleController extends Controller
             view: 'homepage'
             , data: [
                 'articles' => $articles,
-                'message' => $message
+                'message' => $dto->message
             ]
         );
     }
