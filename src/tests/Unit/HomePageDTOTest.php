@@ -14,7 +14,7 @@ class HomePageDTOTest extends TestCase
      *
      * @return void
      */
-    public function test_example()
+    public function testDTOConstructor()
     {
         $dto = new HomePageDTO(message: "test");
         $this->assertEquals(expected: 'test', actual: $dto->message);

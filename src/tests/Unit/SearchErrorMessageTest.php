@@ -12,7 +12,7 @@ class SearchErrorMessageTest extends TestCase
      *
      * @return void
      */
-    public function test_case_InvalidArgumentException()
+    public function testCaseInvalidArgumentException()
     {
         $errorMessage = SearchErrorMessage::errorMessages["InvalidArgumentException"];
         $this->assertEquals(expected: '不正な値を入力しないでください', actual: $errorMessage);
@@ -21,7 +21,7 @@ class SearchErrorMessageTest extends TestCase
     /**
      * @return void
      */
-    public function test_case_PDOException()
+    public function testCasePDOException()
     {
         $errorMessage = SearchErrorMessage::errorMessages["PDOException"];
         $this->assertEquals(expected: 'データの送受信に失敗しました', actual: $errorMessage);
@@ -31,7 +31,7 @@ class SearchErrorMessageTest extends TestCase
     /**
      * @return void
      */
-    public function test_case_InvalidFileException()
+    public function testCaseInvalidFileException()
     {
         $errorMessage = SearchErrorMessage::errorMessages["InvalidFileException"];
         $this->assertEquals(expected: '読み込みに失敗しました', actual: $errorMessage);

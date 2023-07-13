@@ -12,7 +12,7 @@ class ArticleTest extends TestCase
      *
      * @return void
      */
-    public function test_example()
+    public function testArticleDataMustExist()
     {
         $article = new Article(
             title: 'Test title',

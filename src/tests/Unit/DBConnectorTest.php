@@ -13,7 +13,7 @@ class DBConnectorTest extends TestCase
      *
      * @return void
      */
-    public function test_example()
+    public function testConnectionMustEstablish()
     {
         $pdo = DBConnector::connect();
     }
