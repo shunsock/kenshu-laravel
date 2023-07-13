@@ -3,6 +3,7 @@
 use App\Http\Controllers\showArticleController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
+use App\Models\HomePageDTO;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,6 +20,7 @@ use Illuminate\Http\Request;
 Route::get(
     uri: '/',
     action: function (Request $req) {
-        return showArticleController::index(req : $req);
+        $dto = new HomePageDTO($req);
+        return showArticleController::index(dto: $dto);
     }
 );
