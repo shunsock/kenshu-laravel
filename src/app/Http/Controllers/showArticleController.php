@@ -3,22 +3,54 @@
 declare(strict_types=1);
 
 namespace App\Http\Controllers;
+use App\Service\SearchErrorMessage;
 use App\Service\SupplyArticle;
-use Illuminate\Contracts\Foundation\Application;
-use Illuminate\Contracts\View\Factory;
+use App\Models\HomePageDTO;
+use Dotenv\Exception\InvalidFileException;
 use Illuminate\Contracts\View\View;
+use Nette\InvalidArgumentException;
+use PDOException;
 
 class showArticleController extends Controller
 {
     /**
-     * @return Application|Factory|View
+     * @param HomePageDTO $dto
+     * @return View
      */
-    public static function index(): Application|Factory|View
+    public static function index(HomePageDTO $dto): View
     {
+        try {
+            $articles = SupplyArticle::articleData();
+        } catch (InvalidFileException) {
+            $errorMessage = SearchErrorMessage::errorMessages['InvalidFileException'];
+            return view(
+                view: 'homepage'
+                , data: [
+                    'message' => $errorMessage
+                ]
+            );
+        } catch (InvalidArgumentException) {
+            $errorMessage = SearchErrorMessage::errorMessages['InvalidArgumentException'];
+            return view(
+                view: 'homepage'
+                , data: [
+                    'message' => $errorMessage
+                ]
+            );
+        } catch (PDOException){
+            $errorMessage = SearchErrorMessage::errorMessages['PDOException'];
+            return view(
+                view: 'homepage'
+                , data: [
+                    'message' => $errorMessage
+                ]
+            )  ;
+        }
         return view(
             view: 'homepage'
             , data: [
-                'articles' => SupplyArticle::articleData()
+                'articles' => $articles,
+                'message' => $dto->message
             ]
         );
     }

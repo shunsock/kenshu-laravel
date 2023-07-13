@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\showArticleController;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Http\Request;
+use App\Models\HomePageDTO;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,6 +17,10 @@ use Illuminate\Support\Facades\Route;
 */
 
 // router is here: define routes => HTTP/Controllers/Controller.php
-Route::get('/', function () {
-    return showArticleController::index();
-});
+Route::get(
+    uri: '/',
+    action: function (Request $req) {
+        $dto = new HomePageDTO($req);
+        return showArticleController::index(dto: $dto);
+    }
+);
