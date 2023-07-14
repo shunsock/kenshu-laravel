@@ -16,5 +16,6 @@ class DBConnectorTest extends TestCase
     public function testConnectionMustEstablish()
     {
         $pdo = DBConnector::connect();
+        $this->assertNotNull($pdo);
     }
 }
