@@ -10,12 +10,9 @@ final readonly class HomePageDTO
 {
     public string $message;
     public function __construct(
-        Request $req
+        string $message
     )
     {
-        $this->message = $req->query(
-            key: 'message',
-            default: ''
-        );
+        $this->message = $message;
     }
 }

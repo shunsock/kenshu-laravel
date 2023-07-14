@@ -14,7 +14,7 @@ class DBConnector
     public static function connect(): PDO
     {
         try {
-            Dotenv::createImmutable(paths:'..')->load();
+            Dotenv::createImmutable(paths:'/app')->load();
             $host = $_ENV['DB_HOST'];
             $db = $_ENV['DB_DATABASE'];
             $port = $_ENV['DB_PORT'];

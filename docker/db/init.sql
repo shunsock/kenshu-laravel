@@ -1,3 +1,6 @@
+CREATE DATABASE IF NOT EXISTS `test`;
+GRANT ALL ON `test`.* TO 'user'@'%';
+
 CREATE TABLE `users` (
     `id` INT AUTO_INCREMENT NOT NULL,
     `name` VARCHAR(80) NOT NULL,

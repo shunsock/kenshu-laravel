@@ -1,4 +1,5 @@
 src/.env
+src/.env.testing
 .idea
 .idea/*
 ../.idea

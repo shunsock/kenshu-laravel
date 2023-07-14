@@ -20,7 +20,9 @@ use App\Models\HomePageDTO;
 Route::get(
     uri: '/',
     action: function (Request $req) {
-        $dto = new HomePageDTO($req);
+        $dto = new HomePageDTO(
+            message: $req->query(key: 'message', default: '')
+        );
         return showArticleController::index(dto: $dto);
     }
 );
