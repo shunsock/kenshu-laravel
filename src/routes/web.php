@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\showArticleController;
+use App\Http\Controllers\SignupController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
 use App\Models\HomePageDTO;
@@ -24,5 +25,12 @@ Route::get(
             message: $req->query(key: 'message', default: '')
         );
         return showArticleController::index(dto: $dto);
+    }
+);
+
+Route::get(
+    uri: '/signup',
+    action: function () {
+        return SignupController::showSignupPage();
     }
 );
