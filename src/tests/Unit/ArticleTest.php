@@ -22,11 +22,11 @@ class ArticleTest extends TestCase
             updatedAt: '2021-01-01 00:00:00',
             image_path: 'test.jpg'
         );
-        $this->assertTrue(condition: $article->getTitle() === 'Test title');
-        $this->assertTrue(condition: $article->getBody() === 'Test content');
-        $this->assertTrue(condition: $article->getAuthor() === 'Test author');
-        $this->assertTrue(condition: $article->getCreatedAt() === '2021-01-01 00:00:00');
-        $this->assertTrue(condition: $article->getUpdatedAt() === '2021-01-01 00:00:00');
-        $this->assertTrue(condition: $article->getImagePath() === 'test.jpg');
+        $this->assertSame(expected: $article->getTitle(), actual: 'Test title');
+        $this->assertSame(expected: $article->getBody(), actual: 'Test content');
+        $this->assertSame(expected: $article->getAuthor(), actual: 'Test author');
+        $this->assertSame(expected: $article->getCreatedAt(), actual: '2021-01-01 00:00:00');
+        $this->assertSame(expected: $article->getUpdatedAt(), actual: '2021-01-01 00:00:00');
+        $this->assertSame(expected: $article->getImagePath(), actual: 'test.jpg');
     }
 }
