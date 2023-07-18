@@ -4,11 +4,11 @@
     class="signup"
 >
     @csrf
-    <label for="name">Name:</label>
+    <label for="username">Name:</label>
     <input
         type="text"
-        id="name"
-        name="name"
+        id="username"
+        name="username"
         placeholder="please input your name"
     />
 
