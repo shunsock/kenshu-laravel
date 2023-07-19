@@ -6,6 +6,7 @@ namespace App\Service;
 use App\Models\SignupDTO;
 use App\Repository\CreateUserRepository;
 use App\Repository\ShowUserRepository;
+use Illuminate\Support\Facades\Hash;
 use InvalidArgumentException;
 
 final class SignupService
@@ -16,10 +17,13 @@ final class SignupService
         if ($isUserExist) {
             throw new InvalidArgumentException();
         }
+        $username = $dto->inputtedUserName;
+        $email = $dto->inputtedEmail;
+        $hashedPassword = Hash::make($dto->inputtedPassword);
         CreateUserRepository::CreateUser(
-            $dto->inputtedUserName,
-            $dto->inputtedPassword,
-            $dto->inputtedEmail
+            username: $username,
+            password: $hashedPassword,
+            email: $email
         );
     }
 }

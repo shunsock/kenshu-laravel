@@ -3,6 +3,7 @@
 namespace App\Service;
 
 use App\Models\LoggingDTO;
+use App\Models\LoggingUser;
 use Illuminate\Support\Facades\Hash;
 
 class LoginService

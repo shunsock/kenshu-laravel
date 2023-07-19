@@ -4,9 +4,11 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers;
 use App\Models\SignupDTO;
-use App\Service\SearchErrorMessage;
 use App\Service\SignupService;
+use Illuminate\Contracts\Console\Application;
 use Illuminate\Contracts\View\View;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Routing\Redirector;
 use InvalidArgumentException;
 use PDOException;
 
@@ -17,8 +19,6 @@ class SignupController extends Controller
      */
     public static function showSignupPage(): View
     {
-//        $message = session(key: "message") ? session(key: "message") : "";
-//        session()->flush('message');
         $message = "";
         return view(
             view:'signup'
@@ -28,29 +28,20 @@ class SignupController extends Controller
         );
     }
 
-    public static function SignupUser(SignupDTO $dto): void
+    public static function SignupUser(SignupDTO $dto): Application|RedirectResponse|Redirector
     {
         try {
             SignupService::SignupUser($dto);
-            // assign user data to session
             session()->put('username', $dto->inputtedUserName);
 
             // redirect
-            redirect()->route(route: 'home');
+            return redirect(to: '/');
         } catch (InvalidArgumentException) {
-//            session()->put(
-//                'message',
-//                SearchErrorMessage::errorMessages['InvalidArgumentException'].": この名前は使えません"
-//            );
-            redirect(
+            return redirect(
                 to: '/signup'
             );
         } catch (PDOException) {
-//            session()->put(
-//                'message',
-//                SearchErrorMessage::errorMessages['PDOException'].": データの送受信に失敗しました"
-//            );
-            redirect(
+            return redirect(
                 to: '/signup'
             );
         }

@@ -49,7 +49,7 @@ Route::post(
             inputtedPasswordFromForm: $req->input(key: 'password'),
             inputtedEmailFromForm: $req->input(key: 'email'),
         );
-        SignupController::SignupUser(dto: $dto);
+        return SignupController::SignupUser(dto: $dto);
     }
 );
 
@@ -80,6 +80,6 @@ Route::post(
             inputtedNameFromForm: $req->input(key: 'username'),
             inputtedPasswordFromForm: $req->input(key: 'password'),
         );
-        LoginController::login(dto: $dto);
+        return LoginController::login(dto: $dto);
     }
 );
