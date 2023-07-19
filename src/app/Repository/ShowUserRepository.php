@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace App\Repository;
 
 use App\Core\DBConnector;
-use App\Service\LoggingUser;
+use App\Models\LoggingUser;
 use InvalidArgumentException;
 use PDO;
 

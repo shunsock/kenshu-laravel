@@ -7,6 +7,7 @@
         'components.message',
         ['message' => $message]
     )
+    @include('signup.user')
     @includeWhen(
         count($articles) > 0,
         'homepage.articleTable',

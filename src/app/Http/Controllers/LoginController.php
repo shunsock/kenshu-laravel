@@ -37,7 +37,6 @@ class LoginController
     {
         try {
             $success = LoginService::login($dto);
-            dd($success);
             if ($success){
                 session()->put('username', $dto->inputtedNameFromForm);
                 return redirect(

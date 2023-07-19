@@ -4,6 +4,7 @@ namespace App\Service;
 
 use App\Models\LoggingDTO;
 use App\Models\LoggingUser;
+use App\Repository\ShowUserRepository;
 use Illuminate\Support\Facades\Hash;
 
 class LoginService
@@ -13,9 +14,8 @@ class LoginService
     ): bool
     {
         // TODO: get user from database when initialized
-        $user = new LoggingUser(
-            name: $dto->inputtedNameFromForm,
-            password: $dto->inputtedPasswordFromForm
+        $user = ShowUserRepository::getData(
+            name: $dto->inputtedNameFromForm
         );
 
 
@@ -32,8 +32,8 @@ class LoginService
     ): bool
     {
         return Hash::check(
-            value: $inputUserPasswordNotHashed,
-            hashedValue: $trueUserPasswordHashed
+            $inputUserPasswordNotHashed,
+            $trueUserPasswordHashed
         );
     }
 }

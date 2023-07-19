@@ -57,7 +57,7 @@ Route::post(
 Route::get(
     uri: '/logout',
     action: function () {
-        session()->flush();
+        session()->flush('username');
         return redirect(
             to: '/login'
         );
