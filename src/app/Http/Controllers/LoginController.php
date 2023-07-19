@@ -3,47 +3,59 @@
 declare(strict_types=1);
 
 namespace App\Http\Controllers;
-use App\Models\SignupDTO;
 use App\Service\SearchErrorMessage;
-use App\Service\SignupService;
+use App\Service\LoginService;
+use App\Models\LoggingDTO;
 use Illuminate\Contracts\View\View;
-use InvalidArgumentException;
 use PDOException;
+use InvalidArgumentException;
 
-class SignupController extends Controller
+class LoginController
 {
     /**
      * @return View
      */
-    public static function showSignupPage(): View
+    public static function showLoginPage(): View
     {
-//        $message = session(key: "message") ? session(key: "message") : "";
-//        session()->flush('message');
         $message = "";
         return view(
-            view:'signup'
+            view:'login'
             , data: [
                 'message' => $message
             ]
         );
     }
 
-    public static function SignupUser(SignupDTO $dto): void
+
+    /**
+     * @param LoggingDTO $dto
+     * @return void
+     */
+    public static function login(LoggingDTO $dto): void
     {
         try {
-            SignupService::SignupUser($dto);
-            // assign user data to session
-            session()->put('username', $dto->inputtedUserName);
-
-            // redirect
-            redirect()->route(route: 'home');
+            $success = LoginService::login($dto);
+            if ($success){
+                session()->put('username', $dto->inputtedNameFromForm);
+                redirect(
+                    to: '/'
+                );
+            } else {
+//                session()->put(
+//                    'message',
+//                    "ログインに失敗しました"
+//                );
+                redirect(
+                    to: '/login'
+                );
+            }
         } catch (InvalidArgumentException) {
 //            session()->put(
 //                'message',
 //                SearchErrorMessage::errorMessages['InvalidArgumentException'].": この名前は使えません"
 //            );
             redirect(
-                to: '/signup'
+                to: '/login'
             );
         } catch (PDOException) {
 //            session()->put(
@@ -51,7 +63,7 @@ class SignupController extends Controller
 //                SearchErrorMessage::errorMessages['PDOException'].": データの送受信に失敗しました"
 //            );
             redirect(
-                to: '/signup'
+                to: '/login'
             );
         }
     }

@@ -1,7 +1,9 @@
 <?php
 
+use App\Http\Controllers\LoginController;
 use App\Http\Controllers\showArticleController;
 use App\Http\Controllers\SignupController;
+use App\Models\LoggingDTO;
 use App\Models\SignupDTO;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
@@ -22,13 +24,6 @@ use App\Models\HomePageDTO;
 Route::get(
     uri: '/',
     action: function (Request $req) {
-        // redirect to signup page if not logged in
-        if (session(key: 'username') === null) {
-            return redirect(
-                to: '/signup'
-            );
-        }
-
         // input data to DTO
         $dto = new HomePageDTO(
             message: $req->query(key: 'message', default: '')
@@ -37,7 +32,7 @@ Route::get(
         // return view
         return showArticleController::index(dto: $dto);
     }
-);
+)->name(name: "home");
 
 Route::get(
     uri: '/signup',
@@ -55,5 +50,36 @@ Route::post(
             inputtedEmailFromForm: $req->input(key: 'email'),
         );
         SignupController::SignupUser(dto: $dto);
+    }
+);
+
+
+Route::get(
+    uri: '/logout',
+    action: function () {
+        session()->flush();
+        return redirect(
+            to: '/login'
+        );
+    }
+);
+
+
+Route::get(
+    uri: '/login',
+    action: function () {
+        return LoginController::showLoginPage();
+    }
+);
+
+
+Route::post(
+    uri: '/login',
+    action: function (Request $req) {
+        $dto = new LoggingDTO(
+            inputtedNameFromForm: $req->input(key: 'username'),
+            inputtedPasswordFromForm: $req->input(key: 'password'),
+        );
+        LoginController::login(dto: $dto);
     }
 );
