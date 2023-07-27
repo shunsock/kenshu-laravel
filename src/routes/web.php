@@ -90,8 +90,9 @@ Route::post(
 Route::get(
     uri: '/create_article',
     action: function (Request $req) {
-        $loggedUserName = $req->session()->get(key: 'username');
-        $dto = new LoggedUserDTO(username: $loggedUserName);
+        $dto = new LoggedUserDTO(
+            username: $req->session()->get(key: 'username')
+        );
         return CreateArticleController::showPage(dto: $dto);
     }
 );
