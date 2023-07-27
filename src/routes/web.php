@@ -3,6 +3,9 @@
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\showArticleController;
 use App\Http\Controllers\SignupController;
+use App\Http\Controllers\CreateArticleController;
+use App\Models\CreateArticleDTO;
+use App\Models\LoggedUserDTO;
 use App\Models\LoggingDTO;
 use App\Models\SignupDTO;
 use Illuminate\Support\Facades\Route;
@@ -81,5 +84,33 @@ Route::post(
             inputtedPasswordFromForm: $req->input(key: 'password'),
         );
         return LoginController::login(dto: $dto);
+    }
+);
+
+Route::get(
+    uri: '/create_article',
+    action: function (Request $req) {
+        $loggedUserName = $req->session()->get(key: 'username');
+        $dto = new LoggedUserDTO(username: $loggedUserName);
+        return CreateArticleController::showPage(dto: $dto);
+    }
+);
+
+Route::post(
+    uri: '/create_article',
+    action: function (Request $req) {
+        if ($req->session()->get(key: 'username') === null) {
+            return redirect(
+                to: '/login'
+            );
+        }
+
+        $dto = new CreateArticleDTO(
+            title: $req->input(key: 'title'),
+            thumbnail: 'image/test_image_balloon.jpg',
+            body: $req->input(key: 'content'),
+            author: $req->session()->get(key: 'username')
+        );
+        return CreateArticleController::createArticle(dto: $dto);
     }
 );
