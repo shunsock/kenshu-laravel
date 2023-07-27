@@ -35,7 +35,7 @@ Route::get(
         // return view
         return showArticleController::index(dto: $dto);
     }
-)->name(name: "home");
+);
 
 Route::get(
     uri: '/signup',
