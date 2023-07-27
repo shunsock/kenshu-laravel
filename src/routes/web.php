@@ -35,7 +35,7 @@ Route::get(
         // return view
         return showArticleController::index(dto: $dto);
     }
-);
+)->middleware(middleware: 'checkusername');
 
 Route::get(
     uri: '/signup',
@@ -95,17 +95,11 @@ Route::get(
         );
         return CreateArticleController::showPage(dto: $dto);
     }
-);
+)->middleware(middleware: 'checkusername');
 
 Route::post(
     uri: '/create_article',
     action: function (Request $req) {
-        if ($req->session()->get(key: 'username') === null) {
-            return redirect(
-                to: '/login'
-            );
-        }
-
         $dto = new CreateArticleDTO(
             title: $req->input(key: 'title'),
             thumbnail: 'image/test_image_balloon.jpg',
@@ -114,4 +108,4 @@ Route::post(
         );
         return CreateArticleController::createArticle(dto: $dto);
     }
-);
+)->middleware(middleware: 'checkusername');
