@@ -59,4 +59,27 @@ class ShowUserRepository
             );
         }
     }
+
+    public static function getIdFromName(string $username)
+    {
+        $pdo = DBConnector::connect();
+        $query = "SELECT id FROM users WHERE name = :name";
+        $stmt = $pdo->prepare(
+            query: $query
+        );
+        $stmt->bindValue(
+            param: ':name',
+            value: $username
+        );
+        $stmt->execute();
+        $res = $stmt->fetchAll(); // fetchAll() returns false if no data is found
+
+        if ($res === false || count($res) === 0) {
+            throw new InvalidArgumentException(
+                message: "存在しないユーザーです"
+            );
+        } else {
+            return $res[0]['id'];
+        }
+    }
 }
