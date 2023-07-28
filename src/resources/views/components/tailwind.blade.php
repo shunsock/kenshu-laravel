@@ -133,7 +133,7 @@
 
     /* Form */
     @layer components {
-        form.signup {
+        form {
             @apply w-1/2;
             @apply mx-32;
             @apply my-20;
@@ -159,6 +159,12 @@
             @apply py-8;
             @apply px-16;
             @apply text-xl
+        }
+        form.signup > textarea {
+            @apply py-8;
+            @apply px-16;
+            @apply text-xl;
+            @apply h-64;
         }
         button.submit_button {
             @apply my-12;

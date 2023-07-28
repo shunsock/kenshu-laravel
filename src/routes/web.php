@@ -3,6 +3,9 @@
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\showArticleController;
 use App\Http\Controllers\SignupController;
+use App\Http\Controllers\CreateArticleController;
+use App\Models\CreateArticleDTO;
+use App\Models\LoggedUserDTO;
 use App\Models\LoggingDTO;
 use App\Models\SignupDTO;
 use Illuminate\Support\Facades\Route;
@@ -32,7 +35,7 @@ Route::get(
         // return view
         return showArticleController::index(dto: $dto);
     }
-)->name(name: "home");
+)->middleware(middleware: 'checkusername');
 
 Route::get(
     uri: '/signup',
@@ -83,3 +86,26 @@ Route::post(
         return LoginController::login(dto: $dto);
     }
 );
+
+Route::get(
+    uri: '/create_article',
+    action: function (Request $req) {
+        $dto = new LoggedUserDTO(
+            username: $req->session()->get(key: 'username')
+        );
+        return CreateArticleController::showPage(dto: $dto);
+    }
+)->middleware(middleware: 'checkusername');
+
+Route::post(
+    uri: '/create_article',
+    action: function (Request $req) {
+        $dto = new CreateArticleDTO(
+            title: $req->input(key: 'title'),
+            thumbnail: 'image/test_image_balloon.jpg',
+            body: $req->input(key: 'content'),
+            author: $req->session()->get(key: 'username')
+        );
+        return CreateArticleController::createArticle(dto: $dto);
+    }
+)->middleware(middleware: 'checkusername');

@@ -5,8 +5,8 @@
         <p class="item">popular</p>
         <p class="item">minor</p>
         <p class="item">order</p>
-        <p class="item">implementation</p>
         <p class="item">library & package</p>
+        <p class="item"><a href="/create_article">write article</a></p>
         <p class="item">about</p>
         <p class="item">contact</p>
     </nav>

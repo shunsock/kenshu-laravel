@@ -16,6 +16,8 @@ class ExampleTest extends TestCase
     {
         $response = $this->get('/');
 
-        $response->assertStatus(200);
+        // if session DOES NOT exist,
+        // Redirect to login page and Return 302 status code
+        $response->assertStatus(302);
     }
 }
