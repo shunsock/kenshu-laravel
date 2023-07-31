@@ -10,7 +10,7 @@ use Tests\TestCase;
 
 class HandleArticleServiceTest extends TestCase
 {
-    public function testCreate()
+    public function testSuccessArticleCreate()
     {
         $dto = new CreateArticleDTO(
             title: "test_title",
@@ -22,7 +22,7 @@ class HandleArticleServiceTest extends TestCase
         $this->assertSame(expected: true, actual: $res);
     }
 
-    public function testDelete()
+    public function testSuccessArticleDelete()
     {
         $res = HandleArticleService::delete(id: "1");
         $this->assertSame(expected: true, actual: $res);
