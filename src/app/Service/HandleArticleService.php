@@ -31,7 +31,7 @@ class HandleArticleService
         }
     }
 
-    public static function delete(string $id): bool
+    public static function delete(int $id): bool
     {
         try {
             HandleArticleRepository::deleteArticleById(id: $id);

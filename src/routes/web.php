@@ -127,7 +127,7 @@ Route::get(
     uri: '/delete_article',
     action: function (Request $req) {
         return DeleteArticleController::run(
-            id: $req->query(key: 'id')
+            id: (int) $req->query(key: 'id')
         );
     }
 )->middleware(middleware: 'checkifeditorisauthor');

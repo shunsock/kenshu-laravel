@@ -11,7 +11,7 @@ use Illuminate\Routing\Redirector;
 
 class DeleteArticleController
 {
-    public static function run(string $id): Redirector|Application|RedirectResponse
+    public static function run(int $id): Redirector|Application|RedirectResponse
     {
         $success = HandleArticleService::delete(id: $id);
         if ($success) {

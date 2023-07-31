@@ -26,7 +26,7 @@ class HandleArticleRepository
         $stmt->execute();
     }
 
-    public static function deleteArticleById(string $id): void
+    public static function deleteArticleById(int $id): void
     {
         $pdo = DBConnector::connect();
         $sql = "DELETE FROM post WHERE id = :id";
