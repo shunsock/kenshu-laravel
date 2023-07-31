@@ -13,13 +13,13 @@
     <div class="links-wrapper">
         <p>
             <a
-                href="/article_edit?id={{ $article->getId()  }}&author={{ $article->getAuthor() }}"
+                href="/edit_article?id={{ $article->getId()  }}&author={{ $article->getAuthor() }}"
                 class="btn btn-primary"
             >Edit</a>
         </p>
         <p>
             <a
-                href=href="/article_edit?id={{ $article->getId()  }}&author={{ $article->getAuthor() }}"
+                href="/delete_article?id={{ $article->getId()  }}&author={{ $article->getAuthor() }}"
                 class="btn btn-danger"
             >Delete</a>
         </p>
