@@ -25,4 +25,13 @@ class HandleArticleRepository
         $stmt->bindValue(':body', $body, PDO::PARAM_STR);
         $stmt->execute();
     }
+
+    public static function deleteArticleById(string $id): void
+    {
+        $pdo = DBConnector::connect();
+        $sql = "DELETE FROM post WHERE id = :id";
+        $stmt = $pdo->prepare($sql);
+        $stmt->bindValue(':id', $id, PDO::PARAM_INT);
+        $stmt->execute();
+    }
 }
