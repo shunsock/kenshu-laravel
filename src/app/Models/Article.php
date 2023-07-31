@@ -4,16 +4,18 @@ declare(strict_types=1);
 
 namespace App\Models;
 
-class Article
+readonly class Article
 {
-    private string $title;
-    private string $body;
-    private string $author;
-    private string $createdAt;
-    private string $updatedAt;
-    private string $image_path;
+    public int $id;
+    public string $title;
+    public string $body;
+    public string $author;
+    public string $createdAt;
+    public string $updatedAt;
+    public string $image_path;
 
     public function __construct(
+        int $id,
         string $title,
         string $body,
         string $author,
@@ -22,12 +24,21 @@ class Article
         string $image_path
     )
     {
+        $this->id = $id;
         $this->title = $title;
         $this->body = $body;
         $this->author = $author;
         $this->createdAt = $createdAt;
         $this->updatedAt = $updatedAt;
         $this->image_path = $image_path;
+    }
+
+    /**
+     * @return int
+     */
+    public function getId(): int
+    {
+        return $this->id;
     }
 
     /**
