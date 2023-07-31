@@ -14,11 +14,17 @@ class HandleArticleServiceTest extends TestCase
     {
         $dto = new CreateArticleDTO(
             title: "test_title",
-            thumbnail: "test_thumbnail.jpg",
+            thumbnail: "test_image_rose.jpg",
             body: "test_body",
             author: "admin"
         );
         $res = HandleArticleService::create(dto: $dto);
+        $this->assertSame(expected: true, actual: $res);
+    }
+
+    public function testDelete()
+    {
+        $res = HandleArticleService::delete(id: "1");
         $this->assertSame(expected: true, actual: $res);
     }
 }
