@@ -10,4 +10,18 @@
         <p class="card_article__created_at">{{ $article->getCreatedAt() }}</p>
         <p class="card_article__body">{{ $article->getBody() }}</p>
     </div>
+    <div class="links-wrapper">
+        <p>
+            <a
+                href="/article_edit?id={{ $article->getId()  }}&author={{ $article->getAuthor() }}"
+                class="btn btn-primary"
+            >Edit</a>
+        </p>
+        <p>
+            <a
+                href=href="/article_edit?id={{ $article->getId()  }}&author={{ $article->getAuthor() }}"
+                class="btn btn-danger"
+            >Delete</a>
+        </p>
+    </div>
 </div>
