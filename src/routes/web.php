@@ -4,6 +4,7 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\showArticleController;
 use App\Http\Controllers\SignupController;
 use App\Http\Controllers\CreateArticleController;
+use App\Models\ArticlePageDTO;
 use App\Models\CreateArticleDTO;
 use App\Models\LoggedUserDTO;
 use App\Models\LoggingDTO;
@@ -36,6 +37,17 @@ Route::get(
         return showArticleController::index(dto: $dto);
     }
 )->middleware(middleware: 'checkusername');
+
+Route::get(
+    uri: '/article',
+    action: function(Request $req) {
+        $dto = new ArticlePageDTO(
+            id: $req->query(key: 'id', default: ''),
+            username: $req->session()->get(key: 'username')
+        );
+        return showArticleController::showArticleById(dto: $dto);
+    }
+);
 
 Route::get(
     uri: '/signup',
