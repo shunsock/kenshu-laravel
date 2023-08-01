@@ -1,10 +1,12 @@
 <?php
 
 use App\Http\Controllers\DeleteArticleController;
+use App\Http\Controllers\EditArticleController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\showArticleController;
 use App\Http\Controllers\SignupController;
 use App\Http\Controllers\CreateArticleController;
+use App\Models\ArticleEditPageDTO;
 use App\Models\ArticlePageDTO;
 use App\Models\CreateArticleDTO;
 use App\Models\LoggedUserDTO;
@@ -122,6 +124,17 @@ Route::post(
         return CreateArticleController::createArticle(dto: $dto);
     }
 )->middleware(middleware: 'checkusername');
+
+Route::get(
+    uri: '/edit_article',
+    action: function (Request $req) {
+        $dto = new ArticleEditPageDTO(
+            id: $req->query(key: 'id', default: ''),
+            username: $req->session()->get(key: 'username')
+        );
+        return EditArticleController::showArticleById(dto: $dto);
+    }
+)->middleware(middleware: 'checkifeditorisauthor');
 
 Route::get(
     uri: '/delete_article',
