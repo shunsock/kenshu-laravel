@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers;
 use App\Service\LoginService;
-use App\Models\LoggingDTO;
+use App\Models\AuthDTO;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
@@ -30,10 +30,10 @@ class LoginController
 
 
     /**
-     * @param LoggingDTO $dto
+     * @param AuthDTO $dto
      * @return Application|RedirectResponse|Redirector
      */
-    public static function login(LoggingDTO $dto): Application|RedirectResponse|Redirector
+    public static function login(AuthDTO $dto): Application|RedirectResponse|Redirector
     {
         try {
             $success = LoginService::login($dto);

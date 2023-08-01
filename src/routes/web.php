@@ -8,7 +8,7 @@ use App\Http\Controllers\CreateArticleController;
 use App\Models\ArticlePageDTO;
 use App\Models\CreateArticleDTO;
 use App\Models\LoggedUserDTO;
-use App\Models\LoggingDTO;
+use App\Models\AuthDTO;
 use App\Models\SignupDTO;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
@@ -92,7 +92,7 @@ Route::get(
 Route::post(
     uri: '/login',
     action: function (Request $req) {
-        $dto = new LoggingDTO(
+        $dto = new AuthDTO(
             inputtedNameFromForm: $req->input(key: 'username'),
             inputtedPasswordFromForm: $req->input(key: 'password'),
         );

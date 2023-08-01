@@ -2,15 +2,15 @@
 
 namespace App\Service;
 
-use App\Models\LoggingDTO;
-use App\Models\LoggingUser;
+use App\Models\AuthDTO;
+use App\Models\AuthUser;
 use App\Repository\ShowUserRepository;
 use Illuminate\Support\Facades\Hash;
 
 class LoginService
 {
     public static function login(
-        LoggingDTO $dto
+        AuthDTO $dto
     ): bool
     {
         // TODO: get user from database when initialized

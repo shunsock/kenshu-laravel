@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace App\Repository;
 
 use App\Core\DBConnector;
-use App\Models\LoggingUser;
+use App\Models\AuthUser;
 use InvalidArgumentException;
 use PDO;
 
@@ -34,7 +34,7 @@ class ShowUserRepository
     }
 
 
-    public static function getData(string $name): LoggingUser
+    public static function getData(string $name): AuthUser
     {
         $pdo = DBConnector::connect();
         $query = "SELECT * FROM users WHERE name = :name";
@@ -53,7 +53,7 @@ class ShowUserRepository
                 message: "存在しないユーザーです"
             );
         } else {
-            return new LoggingUser(
+            return new AuthUser(
                 name: $res[0]['name'],
                 password: $res[0]['password']
             );

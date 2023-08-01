@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Models;
 
-final readonly class LoggingDTO
+final readonly class AuthDTO
 {
     public string $inputtedNameFromForm;
     public string $inputtedPasswordFromForm;

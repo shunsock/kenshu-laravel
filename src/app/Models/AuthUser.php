@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace App\Models;
 
 
-readonly class LoggingUser
+readonly class AuthUser
 {
     public string $name;
     public string $password;
