@@ -15,6 +15,7 @@ class ArticleTest extends TestCase
     public function testArticleDataMustExist()
     {
         $article = new Article(
+            id: 1,
             title: 'Test title',
             body: 'Test content',
             author: 'Test author',
@@ -22,6 +23,7 @@ class ArticleTest extends TestCase
             updatedAt: '2021-01-01 00:00:00',
             image_path: 'test.jpg'
         );
+        $this->assertSame(expected: $article->getId(), actual: 1);
         $this->assertSame(expected: $article->getTitle(), actual: 'Test title');
         $this->assertSame(expected: $article->getBody(), actual: 'Test content');
         $this->assertSame(expected: $article->getAuthor(), actual: 'Test author');

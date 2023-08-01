@@ -130,4 +130,68 @@
             @apply font-noto;
         }
     }
+
+    /* Form */
+    @layer components {
+        form {
+            @apply w-1/2;
+            @apply mx-32;
+            @apply my-20;
+            @apply content-center;
+            @apply items-center;
+        }
+
+        form.signup > * {
+            @apply block;
+            @apply rounded-lg;
+            @apply my-4;
+            @apply w-full;
+            @apply text-xl;
+            @apply font-noto;
+        }
+
+        form.signup > label {
+            @apply text-3xl;
+            @apply font-cor;
+        }
+
+        form.signup > input {
+            @apply py-8;
+            @apply px-16;
+            @apply text-xl
+        }
+        form.signup > textarea {
+            @apply py-8;
+            @apply px-16;
+            @apply text-xl;
+            @apply h-64;
+        }
+        button.submit_button {
+            @apply my-12;
+            @apply py-8;
+            @apply px-16;
+            @apply w-1/2;
+            @apply bg-monokaiBlack;
+            @apply text-monokaiWhite;
+            @apply font-fonda;
+        }
+    }
+    @layer component {
+        div.links-wrapper {
+            @apply flex;
+            @apply gap-4;
+            @apply mx-32;
+            @apply my-12;
+        }
+        div.links-wrapper p {
+            @apply text-sm;
+            @apply font-cor;
+            @apply bg-monokaiBlack;
+            @apply text-monokaiWhite;
+            @apply rounded-lg;
+            @apply px-6;
+            @apply py-4;
+            @apply mr-4;
+        }
+    }
 </style>

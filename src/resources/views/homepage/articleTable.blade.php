@@ -1,7 +1,7 @@
 <ul class="table_article">
     @foreach($articles as $article)
         <li class="card_article">
-            <a href="#" class="card_article__anchor">
+            <a href="/article?id={{ $article->getId() }}" class="card_article__anchor">
                 <img
                     src="{{ $article->getImagePath() }}"
                     alt="{{ $article->getTitle() }}"
