@@ -10,15 +10,21 @@ use Tests\TestCase;
 
 class HandleArticleServiceTest extends TestCase
 {
-    public function testCreate()
+    public function testSuccessArticleCreate()
     {
         $dto = new CreateArticleDTO(
             title: "test_title",
-            thumbnail: "test_thumbnail.jpg",
+            thumbnail: "test_image_rose.jpg",
             body: "test_body",
             author: "admin"
         );
         $res = HandleArticleService::create(dto: $dto);
+        $this->assertSame(expected: true, actual: $res);
+    }
+
+    public function testSuccessArticleDelete()
+    {
+        $res = HandleArticleService::delete(id: "1");
         $this->assertSame(expected: true, actual: $res);
     }
 }

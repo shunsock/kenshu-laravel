@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\DeleteArticleController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\showArticleController;
 use App\Http\Controllers\SignupController;
@@ -121,3 +122,12 @@ Route::post(
         return CreateArticleController::createArticle(dto: $dto);
     }
 )->middleware(middleware: 'checkusername');
+
+Route::get(
+    uri: '/delete_article',
+    action: function (Request $req) {
+        return DeleteArticleController::run(
+            id: (int) $req->query(key: 'id')
+        );
+    }
+)->middleware(middleware: 'checkifeditorisauthor');

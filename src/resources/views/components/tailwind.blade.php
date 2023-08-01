@@ -176,4 +176,22 @@
             @apply font-fonda;
         }
     }
+    @layer component {
+        div.links-wrapper {
+            @apply flex;
+            @apply gap-4;
+            @apply mx-32;
+            @apply my-12;
+        }
+        div.links-wrapper p {
+            @apply text-sm;
+            @apply font-cor;
+            @apply bg-monokaiBlack;
+            @apply text-monokaiWhite;
+            @apply rounded-lg;
+            @apply px-6;
+            @apply py-4;
+            @apply mr-4;
+        }
+    }
 </style>

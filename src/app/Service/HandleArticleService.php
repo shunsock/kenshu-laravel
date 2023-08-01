@@ -30,4 +30,14 @@ class HandleArticleService
             return false;
         }
     }
+
+    public static function delete(int $id): bool
+    {
+        try {
+            HandleArticleRepository::deleteArticleById(id: $id);
+            return true;
+        } catch (PDOException) {
+            return false;
+        }
+    }
 }
