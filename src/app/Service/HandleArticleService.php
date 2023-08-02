@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Service;
 
+use App\Models\ArticleEditDTO;
 use App\Models\CreateArticleDTO;
 use App\Repository\HandleArticleRepository;
 use App\Repository\ShowUserRepository;
@@ -24,6 +25,21 @@ class HandleArticleService
                 userId: $id,
                 thumbnail:$dto->thumbnail,
                 body: $dto->body
+            );
+            return true;
+        } catch (PDOException) {
+            return false;
+        }
+    }
+
+    public static function edit(ArticleEditDTO $dto): bool
+    {
+        try {
+            HandleArticleRepository::editArticleById(
+                title: $dto->title,
+                thumbnail: $dto->thumbnail,
+                body: $dto->body,
+                id: (int) $dto->id
             );
             return true;
         } catch (PDOException) {

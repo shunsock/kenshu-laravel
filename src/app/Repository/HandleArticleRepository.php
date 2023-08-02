@@ -26,6 +26,23 @@ class HandleArticleRepository
         $stmt->execute();
     }
 
+    public static function editArticleById(
+        string $title,
+        string $thumbnail,
+        string $body,
+        int $id
+    ): void
+    {
+        $pdo = DBConnector::connect();
+        $sql = "UPDATE post SET title = :title, thumbnail = :thumbnail, body = :body WHERE id = :id";
+        $stmt = $pdo->prepare($sql);
+        $stmt->bindValue(':title', $title, PDO::PARAM_STR);
+        $stmt->bindValue(':thumbnail', $thumbnail, PDO::PARAM_STR);
+        $stmt->bindValue(':body', $body, PDO::PARAM_STR);
+        $stmt->bindValue(':id', $id, PDO::PARAM_INT);
+        $stmt->execute();
+    }
+
     public static function deleteArticleById(int $id): void
     {
         $pdo = DBConnector::connect();

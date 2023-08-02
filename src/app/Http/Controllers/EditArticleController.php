@@ -4,7 +4,9 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers;
 
+use App\Models\ArticleEditDTO;
 use App\Models\ArticleEditPageDTO;
+use App\Service\HandleArticleService;
 use App\Service\SearchErrorMessage;
 use App\Service\SupplyArticle;
 use Illuminate\Contracts\View\View;
@@ -34,6 +36,22 @@ class EditArticleController
                 , data: [
                     'message' => $errorMessage
                 ]
+            );
+        }
+    }
+
+    public static function editArticle(ArticleEditDTO $dto): Redirector|RedirectResponse|Application|View
+    {
+        try {
+            HandleArticleService::edit(
+               dto: $dto
+            );
+            return redirect(
+                to: '/'
+            );
+        } catch (PDOException) {
+            return redirect(
+                to: '/edit_article?id=' . $dto->id
             );
         }
     }

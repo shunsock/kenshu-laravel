@@ -1,5 +1,5 @@
 <form
-    action="/create_article"
+    action="/edit_article?id={{ $article->getId() }}&author={{ $article->getAuthor() }}"
     method="post"
     class="signup"
 >
@@ -20,6 +20,13 @@
         name="content"
         required="required"
     >{{ $article->getBody()  }}</textarea>
+
+    <input
+        type="hidden"
+        id="id"
+        name="id"
+        value={{ $article->getId()}}
+    />
 
     <button type="submit" class="submit_button">SUBMIT</button>
 </form>
