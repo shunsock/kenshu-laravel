@@ -148,7 +148,6 @@ Route::post(
         $dto = new ArticleEditDTO(
             id: $req->input(key: 'id'),
             title: $req->input(key: 'title'),
-            thumbnail: 'image/test_image_balloon.jpg',
             body: $req->input(key: 'content'),
         );
 

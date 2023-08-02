@@ -37,7 +37,6 @@ class HandleArticleService
         try {
             HandleArticleRepository::editArticleById(
                 title: $dto->title,
-                thumbnail: $dto->thumbnail,
                 body: $dto->body,
                 id: (int) $dto->id
             );
