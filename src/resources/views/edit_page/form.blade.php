@@ -1,24 +1,16 @@
 <form
-    action="/create_article"
+    action="/edit_article?id={{ $article->getId() }}&author={{ $article->getAuthor() }}"
     method="post"
-    enctype="multipart/form-data"
     class="signup"
 >
     @csrf
-    <label for="thumbnail">Image:</label>
-    <input
-        type="file"
-        id="image"
-        name="image"
-        class=""
-        placeholder="enter image"
-    />
     <label for="title">Title:</label>
     <input
         type="text"
         id="title"
         name="title"
-        placeholder="enter title"
+        value={{$article->getTitle()}}
+        required="required"
     />
 
     <label for="content">Content:</label>
@@ -26,8 +18,15 @@
         type="text"
         id="content"
         name="content"
-        placeholder="enter content"
-    ></textarea>
+        required="required"
+    >{{ $article->getBody()  }}</textarea>
+
+    <input
+        type="hidden"
+        id="id"
+        name="id"
+        value={{ $article->getId()}}
+    />
 
     <button type="submit" class="submit_button">SUBMIT</button>
 </form>
